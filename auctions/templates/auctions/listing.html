@@ -1,0 +1,63 @@
+{% extends "auctions/layout.html" %}
+
+{% block title %}
+    Listing
+{% endblock %}
+
+{% block body %}
+    {{ message }}
+    
+    {% if listing.is_active == True %}
+        {% if request.user.is_authenticated %}
+            {% if listing in request.user.watchlist.all %}
+                <a href="{% url 'auctions:unwatch_listing' listing.id %}">Unwatch</a>
+            {% else %}
+                <a href="{% url 'auctions:watch_listing' listing.id %}">Watch</a>
+            {% endif %}
+        {% endif %}
+    {% else %}
+        {% if request.user == listing.winner %}
+            <h3>You won the auction!</h3>
+        {% endif %}
+    {% endif %}
+    
+    <h3>{{ listing.title }}</h3>
+    <p>Owner: {{ listing.owner.username }}</p>
+    <img src="{{ listing.image_url }}" width="300px">
+    <p>{{ listing.description }}</p>
+    <p>Starting bid: $ {{ listing.starting_bid }}</p>
+    <p>Current price: $ {{ listing.current_price }}</p>
+    <p>Actual bidder: {{ listing.bidder.username }}</p>
+    {% if listing.is_active == True %}
+        {% if request.user.is_authenticated and request.user != listing.owner %}
+            <form action="{% url 'auctions:bid' listing.id %}" method="post">
+                {% csrf_token %}
+                <input type="number" name="bid" placeholder="Your bid" step="0.01" min="{{ listing.current_price }}">
+                <input type="submit">
+            </form>
+        {% else %}
+            <a href="{% url 'auctions:close_listing' listing.id %}">Close listing</a>
+        {% endif %}
+    {% endif %}
+
+    <p>Category: {{ listing.category }}</p>
+    {% if listing.is_active == True %}
+        <p>Status: Active</p>
+    {% else %}
+        <p>Status: Closed</p>
+        <p>Buyer: {{ listing.winner }}</p>
+    {% endif %}
+
+    <h3>Comments</h3>
+    {% for comment in comments %}
+        <p>{{ comment.user.username }}: {{ comment.commentary }}</p>
+    {% empty %}
+        <p>No comments</p>
+    {% endfor %}
+    <h4>Make a comment</h4>
+    <form action="{% url 'auctions:comment' listing.id %}" method="post">
+        {% csrf_token %}
+        <textarea name="commentary" cols="90" rows="10" placeholder="Description"></textarea><br>
+        <input type="submit">
+    </form>
+{% endblock %}
