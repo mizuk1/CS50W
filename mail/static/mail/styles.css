@@ -1,0 +1,8 @@
+textarea {
+    min-height: 400px;
+}
+
+#email:hover {
+    background-color: aqua!important;
+    cursor: pointer;
+}
