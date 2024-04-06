@@ -5,14 +5,14 @@ Each project is inside its own branch.
 Here are the projects from the course:
 - [Project0](https://cs50.harvard.edu/web/2020/projects/0/)
   [Search](https://github.com/mizuk1/CS50W/tree/search)
-  ![Screenshot of the project 0.](https://imgur.com/a/9czqTlI)
+  ![Screenshot of the project 0.](https://imgur.com/La4kYFs)
 
 - [Project1](https://cs50.harvard.edu/web/2020/projects/1/)
   [Wiki](https://github.com/mizuk1/CS50W/tree/wiki)
   ![Screenshot of the project 1.](https://imgur.com/hHmovmg)
 
 - [Project2](https://cs50.harvard.edu/web/2020/projects/2/)
-- [Commerce](https://github.com/mizuk1/CS50W/tree/commerce)
+  [Commerce](https://github.com/mizuk1/CS50W/tree/commerce)
   ![Screenshot of the project 2.](https://imgur.com/xGgi6FR)
 
 - [Project3](https://cs50.harvard.edu/web/2020/projects/3/)
