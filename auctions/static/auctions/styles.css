@@ -1,0 +1,30 @@
+body {
+    padding: 10px;
+}
+
+.row {
+    border-width: 1px;
+    border-style: solid;
+    margin: 20px;
+}
+
+.col {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.listing_img {
+    width: 500px;
+}
+
+.price {
+    font-size: 30px;
+}
+
+.description {
+    background-color: #f5f5f5;
+}
+
+.listing {
+    background-color: #fafafa;
+}

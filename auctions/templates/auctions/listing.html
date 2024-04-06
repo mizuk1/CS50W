@@ -1,0 +1,90 @@
+{% extends "auctions/layout.html" %}
+
+    {% block body %}
+    {% if message %}
+        <div class="row listing">
+            <div class="col">
+                <h2 style="color: red;">{{ message }}</h2>
+            </div>
+        </div>
+    {% endif %}
+    {% if user.is_authenticated %}
+        {% if winnerBid and user.username == winnerBid.bidder.username %}
+            <div class="row listing">
+                <div class="col">
+                    <h3>You won the bid!</h3>
+                </div>
+            </div>
+        {% endif %}
+        <div class="row listing">
+            <div class="col">
+                {% if watching %}
+                    <form action="{% url 'unwatch' listing.id %}" method="post">
+                        {% csrf_token %}
+                        <input  type="submit" class="btn btn-primary" value="Unwatch"/>
+                    </form>
+                {% else %}
+                      <form action="{% url 'watch' listing.id %}" method="post">
+                        {% csrf_token %}
+                        <input  type="submit" class="btn btn-primary" value="Watch"/>
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+        {% if isOwner %}
+            {% if listing.is_active %}
+                <div class="row listing">
+                    <div class="col">
+                    <form action="{% url 'close' listing.id %}" method="post">
+                        {% csrf_token %}
+                        <input  type="submit" class="btn btn-primary" value="Close"/>
+                    </form>
+                    </div>
+                </div>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+    <div class="row listing">
+        <div class="col">
+            <a href="{% url 'listing' listing.id %}"><h3>{{ listing.title }}</h3></a>
+            <img class="listing_img" src="{{ listing.image_url }}">
+            <p class="description">{{ listing.description }}</p>
+            <p class="price">$ {{ listing.price }}</p>
+            {% if user.is_authenticated %}
+                {% if listing.is_active %}
+                    <h3>Add bid</h3>
+                    <form action="{% url 'bid' listing.id %}" method="post">
+                        {% csrf_token %}
+                        {{ bidForm }}
+                        <input  type="submit" class="btn btn-primary" value="Bid"/>
+                    </form>
+                {% else %}
+                    <div class="row listing">
+                        <div class="col">
+                            <h3>Bid is closed</h3>
+                        </form>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="row listing">
+        <div class="col">
+            <h3>Comments</h3>
+            {% for comment in comments %}
+                <p>{{ comment.user }}: {{ comment.comment }}</p>
+            {% empty %}
+                <p>No comments</p>
+            {% endfor %}
+            {% if user.is_authenticated %}
+                <form action="{% url 'listing' listing.id %}" method="post">
+                    {% csrf_token %}
+                    {{ form }}
+                    <input class="btn btn-primary form-group" type="submit" value="Submit" />
+                </form>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
