@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Advanced Search</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body style="width: 100%;">
+    <header>
+        <div class="menu-nav">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Google Search</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main style="width: 100%;">
+        <section id="advanced-section">
+            <h3>Advanced Search</h3>
+            <form id="advanced-form" action="https://www.google.com/search">
+                <div id="div-inline">
+                    <label for="all-these-words">all these words</label>
+                    <input id="all-these-words" type="text" name="as_q">
+                </div>
+                <div id="div-inline">
+                    <label for="exact-word-or-phrase">this exact word or phrase</label>
+                    <input id="exact-word-or-phrase" type="text" name="as_epq">
+                </div>
+                <div id="div-inline">
+                    <label for="any-of-these-words">any of these words</label>
+                    <input id="any-of-these-words" type="text" name="as_oq">
+                </div>
+                <div id="div-inline">
+                    <label for="none-of-these-words">none of these words</label>
+                    <input id="none-of-these-words" type="text" name="as_eq">
+                </div>
+                <input id="advanced-button" type="submit" value="Advanced Search">
+            </form>
+        </section>
+    </main>
+    <footer>
+
+    </footer>
+</body>

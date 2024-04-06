@@ -1,0 +1,113 @@
+body,
+html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+}
+
+
+header {
+    width: 100%;
+    height: 75px;
+    margin-block-end: 25px;
+
+    nav {
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        ul {
+            list-style-type: none;
+
+            li {
+                display: inline;
+                margin-right: 30px;
+            }
+        }
+    }
+}
+
+a {
+    text-decoration: none;
+    color: orange;
+}
+
+a:hover {
+    color: green;
+}
+
+main {
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+    section {
+        justify-content: center;
+
+        img {
+            margin-top: 100px;
+        }
+
+        form {
+            margin-top: 30px;
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            input {
+                margin: 5px;
+                width: 100%;
+                height: 40px;
+                font-size: 20px;
+                border-radius: 10px;
+            }
+        }
+    }
+
+}
+
+input[type="submit"] {
+    width: auto;
+}
+
+input[type="submit"]:hover {
+    background-color: azure;
+}
+
+#div-inline {
+    display: inline-flex;
+}
+
+#advanced-section {
+    width: 100%;
+    display: inline;
+}
+
+#advanced-form {
+    display: inline-flex;
+    align-items: flex-start;
+    margin: 50px;
+}
+
+label {
+    width: 500px;
+}
+
+#advanced-section h3 {
+    margin-inline-start: 50px;
+}
+
+#advanced-button {
+    background-color: blue;
+    color: white;
+}
+
+#advanced-button:hover {
+    background-color: rgb(166, 166, 255);
+}
