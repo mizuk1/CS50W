@@ -21,4 +21,4 @@ Here are the projects from the course:
 
 - [Project4](https://cs50.harvard.edu/web/2020/projects/4/)
   [Network](https://github.com/mizuk1/CS50W/tree/network)
-  ![Screenshot of the project 3.](https://imgur.com/bOLTLnn)
+  [Imgur](https://imgur.com/bOLTLnn)
