@@ -1,0 +1,74 @@
+body {
+    font-family: Roboto, sans-serif;
+}
+
+h1 {
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 2rem;
+}
+
+h4 {
+    margin-bottom: 16px;
+}
+
+.row {
+    border-width: 1px;
+    border-style: solid;
+    margin: 20px;
+}
+
+.col {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+textarea {
+    display: block;
+    width: 100%;
+    min-height: 100px;
+}
+
+p {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+p:last-child {
+    margin-bottom: 0px;
+}
+
+p:first-child {
+    margin-top: 0px;
+}
+
+.form-group:last-child {
+    margin-bottom: 0px;
+}
+
+.edit,
+.edit-post {
+    color: red;
+    cursor: pointer;
+}
+
+.edit:hover {
+    text-decoration: none;
+}
+
+.like {
+    height: 22px;
+    width: 22px;
+    cursor: pointer;
+}
+
+.likes {
+    display: flex;
+}
+
+.likes p {
+    margin-top: 0px;
+    margin-left: 4px;
+}

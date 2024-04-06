@@ -1,0 +1,47 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+
+    <h1>Following</h1>
+
+    <div id="posts-view">
+        {% for post in page_obj %}
+
+            <div class="row">
+                <div class="col">
+                    <h5><a href="{% url 'profile' post.user.username  %}">{{ post.user.username }}</a></h5>
+                    <p>{{ post.text }}</p>
+                    <p>{{ post.timestamp }}</p>
+                    <div class="likes">
+                        <img class="like" src="{% static 'network/heart.png' %}" data-number="{{ post.id }}"><p data-p="{{ post.id }}">{{ post.likes.count }}</p>
+                    </div>
+                </div>
+            </div>
+            
+        {% endfor %}
+    </div>
+
+    <div class="pagination justify-content-center">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+    
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+    
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'network/main.js' %}"></script>
+{% endblock %}
