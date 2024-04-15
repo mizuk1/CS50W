@@ -1,0 +1,16 @@
+html {
+    height: 100%;
+}
+
+body {
+    background: #ffffff;
+    font-family: Oswald, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+main {
+    flex-grow: 1;
+}

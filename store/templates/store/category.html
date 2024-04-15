@@ -1,0 +1,35 @@
+{% extends "store/layout.html" %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'store/css/item-style.css' %}">
+{% endblock %}
+
+{% block body %}
+<div class="container p-3">
+    <div class="row">
+        <h1>{{ category }}</h1>
+        <a class="form-search-link" href="{% url 'store:categories' %}">Voltar</a>
+        {% for course in courses %}
+        <div class="col-md-4" style="padding-top: 12px;">
+            <div class="card" style="height: 100%;">
+                <img class="card-img-top" style="object-fit: contain; max-height: 100px;"
+                    src="{{ course.category.imageUrl }}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{ course.name }}</h5>
+                    <p>{{ course.objectives }}</p>
+                    <p>{{ course.participant }}</p>
+                    <p>{{ course.requirement }}</p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted"><a class="d-flex justify-content-center form-search-link"
+                            href="{% url 'store:course' course.id %}">Conheça</a></small>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+            <h2>Nenhum curso encontrado</h2>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

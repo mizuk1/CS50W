@@ -1,0 +1,140 @@
+{% extends "store/layout.html" %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
+<link rel="stylesheet" href="{% static 'store/css/index-style.css' %}" />
+<script src="{% static 'store/js/time.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+
+<div class="first-div">
+    <div class="container container-heading p-4 px-4">
+        <div class="row row-heading px-0 mx-0">
+            <div class="col-md-12 p-0">
+                <div class="div-h1">
+                    <h1 class="col-h1 me-0 pe-5">Capacite-se para o sucesso</h1>
+                </div>
+                <div class="form-search-div">
+                    <form action="{% url 'store:search' %}" method="post" class="d-flex submit-form form-with-button">
+                        {% csrf_token %}
+                        <input class="form-control form-search" type="search" placeholder="Encontre seu curso"
+                            name="prompt">
+                        <input class="btn btn-secondary form-button ms-3" type="submit" value="Procurar">
+                    </form>
+                </div>
+                <div class="form-div pb-0 my-4"><a class="d-flex align-items-center form-search-link pt-0 pb-0"
+                        href="{% url 'store:categories' %}">Explorar cursos</a></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container container-padding">
+    <div class="col-md-12">
+        <div class="media-scroller-brand">
+            {% for client in clients %}
+            <div class="media-element">
+                <img src="{{ client.imageUrl }}">
+            </div>
+            {% endfor %}
+        </div>
+        <div class="client-link">
+            <a class="d-flex justify-content-center form-search-link" href="{% url 'store:clients' %}">Conheça nossos
+                clientes</a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12" style="background-color: #007bff; text-align: center; padding: 50px; color: #f8f9fa;">
+            <h1>Promoção: {{ course.name }} por apenas R$ 50,00!</h1>
+            <p>Oferta com tempo limitado.</p>
+            <div id="timer" style="font-size: 90px; margin: 20px;"></div>
+            <a href="{% url 'store:course' course.id %}" class="btn btn-primary"
+                style="font-size: 20px; background-color: #f8f9fa; color: #007bff;">Acesse o Curso</a>
+        </div>
+    </div>
+</div>
+
+<div class="second-color">
+    <div class="container container-padding">
+        <div class="row" style="border: solid 1px; border-radius: 10px; background: #E0E0E0;">
+            <h2>Instrutores</h2>
+            {% for instructor in instructors %}
+            <div class="col-md-6">.
+                <div class="media-element d-flex justify-content-center">
+                    <div class="card" style="height: 100%; padding: 10px;">
+                        <img class="card-img-top" style="object-fit: contain; max-height: 100px;"
+                            src="{{ instructor.imageUrl }}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ instructor.name }}</h5>
+                            <p class="card-text" style="max-height: 200px; overflow-y: auto;">{{ instructor.user.email }}</p>
+                        </div>
+                    </div>
+                </div>.
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div class="container container-padding">
+    <div class="col-md-12">
+        <a class="form-search-link" href="{% url 'store:categories' %}">
+            <h2>Categorias</h2>
+        </a>
+        <div class="media-scroller-cards">
+            {% for category in categories %}
+            <div class="media-element">
+                <div class="card" style="height: 100%;">
+                    <img class="card-img-top" style="object-fit: contain; max-height: 100px;"
+                        src="{{ category.imageUrl }}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ category.name }}</h5>
+                        <p class="card-text" style="max-height: 200px; overflow-y: auto;">{{ category.description }}</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted"><a class="d-flex justify-content-center form-search-link"
+                                href="{% url 'store:category' category.name %}">Conheça</a></small>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div class="second-color">
+    <div class="container container-padding">
+        <div class="col-md-12">
+            <h2>Excel</h2>
+            <div class="media-scroller-cards">
+                {% for course in courses %}
+                {% if course.category.name == 'Excel' %}
+                <div class="media-element">
+                    <div class="card" style="height: 100%;">
+                        <img class="card-img-top" style="object-fit: contain; max-height: 100px;"
+                            src="{{ course.category.imageUrl }}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ course.name }}</h5>
+                            <p class="card-text" style="max-height: 200px; overflow-y: auto;">{{ course.objectives }}
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted"><a class="d-flex justify-content-center form-search-link"
+                                    href="{% url 'store:course' course.id %}">Conheça</a></small>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

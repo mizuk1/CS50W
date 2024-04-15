@@ -1,0 +1,45 @@
+{% extends "store/layout.html" %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'store/css/item-style.css' %}">
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row" style="background: #d3dcea;">
+        <div class="col-md-12 p-3">
+            <h2>Itens - {{ request.user }}</h2>
+            {% for item in items %}
+            <div class="container">
+                <div class="row" style="background: #f5f5f5">
+                    <div class="col-md-12">
+                        <h3>Curso</h3>
+                        <div class="container">
+                            <div class="row" style="background: #eef6ff">
+                                <div class="col-md-12 p-3">
+                                    <a class="form-search-link" href="{% url 'store:course' item.course.id %}"><h4>{{ item.course.name }}</h4></a>
+                                    <img src="{{ item.course.category.imageUrl }}" style="object-fit: contain; max-height: 100px;">
+                                    <h4 class="p-3">Quantidade: {{ item.quantity }}</h4>
+                                    <form action="{% url 'store:removeItem' %}" method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="course_id" value="{{ item.course.id }}">
+                                        <input class="btn btn-dark" type="submit" value="Remover do carrinho">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <h2>Carrinho vazio.</h2>
+            {% endfor %}
+            <form action="{% url 'store:payment' %}" method="post">
+                {% csrf_token %}
+                <input class="btn btn-dark" type="submit" value="Finalizar carrinho">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

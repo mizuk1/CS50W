@@ -1,0 +1,37 @@
+{% extends "store/layout.html" %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'store/css/item-style.css' %}">
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 p-3">
+            <h1>{{ course.name }}</h1>
+            <a class="form-search-link" href="{% url 'store:category' course.category %}" style="display: block;">Voltar</a>
+            <img src="{{ course.category.imageUrl }}" alt="" style="width: 300px;">
+            <p>{{ course.objectives }}</p>
+            <p>{{ course.participant }}</p>
+            <p>{{ course.requirement }}</p>
+            <div class="d-md-flex navbar-div-buttons">
+                {% if isCourseInCart %}
+                    <form action="{% url 'store:removeItem' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="course_id" value="{{ course.id }}">
+                        <input class="btn btn-dark" type="submit" value="Remover do carrinho">
+                    </form>
+                {% else %}
+                    <form action="{% url 'store:addItem' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="course_id" value="{{ course.id }}">
+                        <input class="btn btn-dark" type="submit" value="Adicionar ao carrinho">
+                    </form>
+                {% endif %}
+            </div>
+            
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "store/layout.html" %}
+{% load static %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        {% for client in clients %}
+        <div class="col-md-4" style="padding-top: 12px;">
+            <div class="card" style="height: 100%;">
+                <img class="card-img-top" style="object-fit: contain; max-height: 100px;" src="{{ client.imageUrl }}"
+                    alt="Card image cap">
+                <div class="card-body" style="text-align: center;">
+                    <h5 class="card-title">{{ client.name }}</h5>
+                    <p class="card-text" style="max-height: 200px; overflow-y: auto;">{{ client.area }}</p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted"><a class="d-flex justify-content-center form-search-link"
+                            href="https://www.google.com/search?q={{ client.name }}" target="_blank">Conheça</a></small>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
