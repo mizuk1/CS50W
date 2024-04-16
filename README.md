@@ -23,6 +23,6 @@ Here are the projects from the course:
   [Network](https://github.com/mizuk1/CS50W/tree/network)
   [Screenshot of the project 4.](https://imgur.com/bOLTLnn)
 
-- [FinalPriject](https://cs50.harvard.edu/web/2020/projects/final/capstone/)
+- [FinalProject](https://cs50.harvard.edu/web/2020/projects/final/capstone/)
   [Capstone](https://github.com/mizuk1/CS50W/tree/capstone)
   [Screenshot of the final project](https://imgur.com/kEjCF7T)
